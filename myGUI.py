@@ -50,8 +50,7 @@ def reset():
     updateGui()
 
 def randompyraminx(moves):
-    if moves == 0:
-        reset()
+    reset()
     for i in range(moves):
         move = random.randint(0,23)
         match move:
@@ -107,8 +106,7 @@ def randompyraminx(moves):
                 print("ERROR")
 
 def clockwise_randompyraminx(moves):
-    if moves == 0:
-        reset()
+    reset()
     for i in range(moves):
         move = random.randint(0,11)
         match move:
