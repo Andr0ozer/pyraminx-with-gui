@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import ttk
 import math
 import random
 
@@ -12,36 +11,36 @@ def reset():
     currentcolors = startingcolors
 
     clock_list = [
-        {"button": Button(root, text="top clock", bg = "red"), "function": r1, "arg1": currentcolors},
-        {"button": Button(root, text="top counter clock", bg = "red"), "function": r1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = "red"), "function": r2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = "red"), "function": r2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = "red"), "function": r3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = "red"), "function": r3p, "arg1": currentcolors},
-        {"button": Button(root, text="top clock", bg = "blue"), "function": b1, "arg1": currentcolors},
-        {"button": Button(root, text="top counterclock", bg = "blue"), "function": b1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = "blue"), "function": b2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = "blue"), "function": b2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = "blue"), "function": b3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = "blue"), "function": b3p, "arg1": currentcolors},
-        {"button": Button(root, text="top clock", bg = "green"), "function": g1, "arg1": currentcolors},
-        {"button": Button(root, text="top counter clock", bg = "green"), "function": g1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = "green"), "function": g2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = "green"), "function": g2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = "green"), "function": g3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = "green"), "function": g3p, "arg1": currentcolors},
-        {"button": Button(root, text="top clock", bg = "yellow"), "function": y1, "arg1": currentcolors},
-        {"button": Button(root, text="top counter clock", bg = "yellow"), "function": y1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = "yellow"), "function": y2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = "yellow"), "function": y2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = "yellow"), "function": y3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = "yellow"), "function": y3p, "arg1": currentcolors},
+        {"button": Button(root, text="top clock", bg = colors[0]), "function": r1, "arg1": currentcolors},
+        {"button": Button(root, text="top counter clock", bg = colors[0]), "function": r1p, "arg1": currentcolors},
+        {"button": Button(root, text="second clock", bg = colors[0]), "function": r2, "arg1": currentcolors},
+        {"button": Button(root, text="second counter clock", bg = colors[0]), "function": r2p, "arg1": currentcolors},
+        {"button": Button(root, text="bottom clock", bg = colors[0]), "function": r3, "arg1": currentcolors},
+        {"button": Button(root, text="bottom counter clock", bg = colors[0]), "function": r3p, "arg1": currentcolors},
+        {"button": Button(root, text="top clock", bg = colors[1]), "function": b1, "arg1": currentcolors},
+        {"button": Button(root, text="top counterclock", bg = colors[1]), "function": b1p, "arg1": currentcolors},
+        {"button": Button(root, text="second clock", bg = colors[1]), "function": b2, "arg1": currentcolors},
+        {"button": Button(root, text="second counter clock", bg = colors[1]), "function": b2p, "arg1": currentcolors},
+        {"button": Button(root, text="bottom clock", bg = colors[1]), "function": b3, "arg1": currentcolors},
+        {"button": Button(root, text="bottom counter clock", bg = colors[1]), "function": b3p, "arg1": currentcolors},
+        {"button": Button(root, text="top clock", bg = colors[2]), "function": g1, "arg1": currentcolors},
+        {"button": Button(root, text="top counter clock", bg = colors[2]), "function": g1p, "arg1": currentcolors},
+        {"button": Button(root, text="second clock", bg = colors[2]), "function": g2, "arg1": currentcolors},
+        {"button": Button(root, text="second counter clock", bg = colors[2]), "function": g2p, "arg1": currentcolors},
+        {"button": Button(root, text="bottom clock", bg = colors[2]), "function": g3, "arg1": currentcolors},
+        {"button": Button(root, text="bottom counter clock", bg = colors[2]), "function": g3p, "arg1": currentcolors},
+        {"button": Button(root, text="top clock", bg = colors[3]), "function": y1, "arg1": currentcolors},
+        {"button": Button(root, text="top counter clock", bg = colors[3]), "function": y1p, "arg1": currentcolors},
+        {"button": Button(root, text="second clock", bg = colors[3]), "function": y2, "arg1": currentcolors},
+        {"button": Button(root, text="second counter clock", bg = colors[3]), "function": y2p, "arg1": currentcolors},
+        {"button": Button(root, text="bottom clock", bg = colors[3]), "function": y3, "arg1": currentcolors},
+        {"button": Button(root, text="bottom counter clock", bg = colors[3]), "function": y3p, "arg1": currentcolors},
         #{"button": Button(root, text="Randomize!!", bg = "grey"), "function": entry_func, "arg1": 0},
     ]
 
     yval = 50
     for button_info in clock_list:
-        button_info["button"].place(x=1000, y=yval)
+        button_info["button"].place(x=1100, y=yval)
         button_info["button"].config(command=lambda b=button_info: (
         update_current_button(b),
         b["function"](b["arg1"],)
@@ -107,6 +106,39 @@ def randompyraminx(moves):
             case _:
                 print("ERROR")
 
+def clockwise_randompyraminx(moves):
+    if moves == 0:
+        reset()
+    for i in range(moves):
+        move = random.randint(0,11)
+        match move:
+            case 0:
+                r1(currentcolors)
+            case 1:
+                r2(currentcolors)
+            case 2:
+                r3(currentcolors)
+            case 3:
+                b1(currentcolors)
+            case 4:
+                b2(currentcolors)
+            case 5:
+                b3(currentcolors)
+            case 6:
+                g1(currentcolors)
+            case 7:
+                g2(currentcolors)
+            case 8:
+                g3(currentcolors)
+            case 9:
+                y1(currentcolors)
+            case 10:
+                y2(currentcolors)
+            case 11:
+                y3(currentcolors)
+            case _:
+                print("ERROR")
+
 def triangle(x,y):
     x1 = x
     x2 = x - 30
@@ -133,15 +165,24 @@ def update_current_button(button_info):
     current_button_info = button_info
 
 def solved(a, b):
+    heuristic = 0.0
     for i in range(63):
         if a[i] != b[i]:
-            return False
-    return True
+            heuristic = heuristic + 1
+
+    heuristic = heuristic / 21
+    heuristic = math.ceil(heuristic)
+
+    return heuristic
 
 def updateGui():
     canvas.delete("all")
-    if solved([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], currentcolors):
+    if solved([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], currentcolors) == 0:
         canvas.create_text(300, 50, text="SOLVED!!!", fill="black", font=('Helvetica 15 bold'))
+    else:
+        canvas.create_text(220, 50, text="Heuristic:", fill="black", font=('Helvetica 15 bold'))
+        canvas.create_text(300, 50, text= solved([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], 
+        currentcolors), fill="black", font=('Helvetica 15 bold'))
 
     #1 Red
     canvas.create_polygon(triangle(500, 150), fill=colors[currentcolors[0]], outline = "black")
@@ -233,6 +274,10 @@ def entry_func():
     entry_text = entry.get()
     randompyraminx(int(entry_text))
 
+def clockwise_entry_func():
+    entry_text = entry.get()
+    clockwise_randompyraminx(int(entry_text))
+
 #red base moves
 def r1(pcolors):
     temp = pcolors[16]
@@ -240,7 +285,6 @@ def r1(pcolors):
     pcolors[63] = pcolors[41]
     pcolors[41] = temp
     updateGui()
-  
 
 def r1p(pcolors):
     temp = pcolors[41]
@@ -732,13 +776,15 @@ def y3p(pcolors):
 root = Tk()
 root.title("Pyraminx")
 canvas = Canvas(root, width=1500, height=1000)
-colors = ["red", "blue", "green", "yellow", "black"]
+colors = ["red3", "DeepSkyBlue2", "Dark Green", "goldenrod", "grey"]
 canvas.pack()
 
 reset()
 
-button = Button(root, text="Randomize", command=entry_func, bg = 'grey')
-button.place(x = 1000, y = 770)
+Rbutton = Button(root, text="Randomize", command=entry_func, bg = colors[4])
+Rbutton.place(x = 1100, y = 770)
+Cbutton = Button(root, text="Clockwise Randomize", command=clockwise_entry_func, bg = colors[4])
+Cbutton.place(x = 1100, y = 800)
 entry = Entry(root)
-entry.place(x = 850, y = 770)
+entry.place(x = 950, y = 770)
 root.mainloop()
