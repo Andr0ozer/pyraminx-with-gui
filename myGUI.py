@@ -11,30 +11,30 @@ def reset():
     currentcolors = startingcolors
 
     clock_list = [
-        {"button": Button(root, text="top clock", bg = colors[0]), "function": r1, "arg1": currentcolors},
-        {"button": Button(root, text="top counter clock", bg = colors[0]), "function": r1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = colors[0]), "function": r2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = colors[0]), "function": r2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = colors[0]), "function": r3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = colors[0]), "function": r3p, "arg1": currentcolors},
-        {"button": Button(root, text="top clock", bg = colors[1]), "function": b1, "arg1": currentcolors},
-        {"button": Button(root, text="top counterclock", bg = colors[1]), "function": b1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = colors[1]), "function": b2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = colors[1]), "function": b2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = colors[1]), "function": b3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = colors[1]), "function": b3p, "arg1": currentcolors},
-        {"button": Button(root, text="top clock", bg = colors[2]), "function": g1, "arg1": currentcolors},
-        {"button": Button(root, text="top counter clock", bg = colors[2]), "function": g1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = colors[2]), "function": g2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = colors[2]), "function": g2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = colors[2]), "function": g3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = colors[2]), "function": g3p, "arg1": currentcolors},
-        {"button": Button(root, text="top clock", bg = colors[3]), "function": y1, "arg1": currentcolors},
-        {"button": Button(root, text="top counter clock", bg = colors[3]), "function": y1p, "arg1": currentcolors},
-        {"button": Button(root, text="second clock", bg = colors[3]), "function": y2, "arg1": currentcolors},
-        {"button": Button(root, text="second counter clock", bg = colors[3]), "function": y2p, "arg1": currentcolors},
-        {"button": Button(root, text="bottom clock", bg = colors[3]), "function": y3, "arg1": currentcolors},
-        {"button": Button(root, text="bottom counter clock", bg = colors[3]), "function": y3p, "arg1": currentcolors},
+        {"button": Button(root, text="top clock", bg = colors[0]), "function": makemove, "arg1": 0},
+        {"button": Button(root, text="top counter clock", bg = colors[0]), "function": makemove, "arg1": 1},
+        {"button": Button(root, text="second clock", bg = colors[0]), "function": makemove, "arg1": 2},
+        {"button": Button(root, text="second counter clock", bg = colors[0]), "function": makemove, "arg1": 3},
+        {"button": Button(root, text="bottom clock", bg = colors[0]), "function": makemove, "arg1": 4},
+        {"button": Button(root, text="bottom counter clock", bg = colors[0]), "function": makemove, "arg1": 5},
+        {"button": Button(root, text="top clock", bg = colors[1]), "function": makemove, "arg1": 6},
+        {"button": Button(root, text="top counterclock", bg = colors[1]), "function": makemove, "arg1": 7},
+        {"button": Button(root, text="second clock", bg = colors[1]), "function": makemove, "arg1": 8},
+        {"button": Button(root, text="second counter clock", bg = colors[1]), "function": makemove, "arg1": 9},
+        {"button": Button(root, text="bottom clock", bg = colors[1]), "function": makemove, "arg1": 10},
+        {"button": Button(root, text="bottom counter clock", bg = colors[1]), "function": makemove, "arg1": 11},
+        {"button": Button(root, text="top clock", bg = colors[2]), "function": makemove, "arg1": 12},
+        {"button": Button(root, text="top counter clock", bg = colors[2]), "function": makemove, "arg1": 13},
+        {"button": Button(root, text="second clock", bg = colors[2]), "function": makemove, "arg1": 14},
+        {"button": Button(root, text="second counter clock", bg = colors[2]), "function": makemove, "arg1": 15},
+        {"button": Button(root, text="bottom clock", bg = colors[2]), "function": makemove, "arg1": 16},
+        {"button": Button(root, text="bottom counter clock", bg = colors[2]), "function": makemove, "arg1": 17},
+        {"button": Button(root, text="top clock", bg = colors[3]), "function": makemove, "arg1": 18},
+        {"button": Button(root, text="top counter clock", bg = colors[3]), "function": makemove, "arg1": 19},
+        {"button": Button(root, text="second clock", bg = colors[3]), "function": makemove, "arg1": 20},
+        {"button": Button(root, text="second counter clock", bg = colors[3]), "function": makemove, "arg1": 21},
+        {"button": Button(root, text="bottom clock", bg = colors[3]), "function": makemove, "arg1": 22},
+        {"button": Button(root, text="bottom counter clock", bg = colors[3]), "function": makemove, "arg1": 23},
         #{"button": Button(root, text="Randomize!!", bg = "grey"), "function": entry_func, "arg1": 0},
     ]
 
@@ -49,61 +49,67 @@ def reset():
 
     updateGui()
 
+def makemove(move):
+    match move:
+        case 0:
+            r1(currentcolors)
+        case 1:
+            r1p(currentcolors)
+        case 2:
+            r2(currentcolors)
+        case 3:
+            r2p(currentcolors)
+        case 4:
+            r3(currentcolors)
+        case 5:
+            r3p(currentcolors)
+        case 6:
+            b1(currentcolors)
+        case 7:
+            b1p(currentcolors)
+        case 8:
+            b2(currentcolors)
+        case 9:
+            b2p(currentcolors)
+        case 10:
+            b3(currentcolors)
+        case 11:
+            b3p(currentcolors)
+        case 12:
+            g1(currentcolors)
+        case 13:
+            g1p(currentcolors)
+        case 14:
+            g2(currentcolors)
+        case 15:
+            g2p(currentcolors)
+        case 16:
+            g3(currentcolors)
+        case 17:
+            g3p(currentcolors)
+        case 18:
+            y1(currentcolors)
+        case 19:
+            y1p(currentcolors)
+        case 20:
+            y2(currentcolors)
+        case 21:
+            y2p(currentcolors)
+        case 22:
+            y3(currentcolors)
+        case 23:
+            y3p(currentcolors)
+        case _:
+            print("ERROR")
+    updateGui()
+
 def randompyraminx(moves):
     reset()
+    print('Moves')
     for i in range(moves):
         move = random.randint(0,23)
-        match move:
-            case 0:
-                r1(currentcolors)
-            case 1:
-                r1p(currentcolors)
-            case 2:
-                r2(currentcolors)
-            case 3:
-                r2p(currentcolors)
-            case 4:
-                r3(currentcolors)
-            case 5:
-                r3p(currentcolors)
-            case 6:
-                b1(currentcolors)
-            case 7:
-                b1p(currentcolors)
-            case 8:
-                b2(currentcolors)
-            case 9:
-                b2p(currentcolors)
-            case 10:
-                b3(currentcolors)
-            case 11:
-                b3p(currentcolors)
-            case 12:
-                g1(currentcolors)
-            case 13:
-                g1p(currentcolors)
-            case 14:
-                g2(currentcolors)
-            case 15:
-                g2p(currentcolors)
-            case 16:
-                g3(currentcolors)
-            case 17:
-                g3p(currentcolors)
-            case 18:
-                y1(currentcolors)
-            case 19:
-                y1p(currentcolors)
-            case 20:
-                y2(currentcolors)
-            case 21:
-                y2p(currentcolors)
-            case 22:
-                y3(currentcolors)
-            case 23:
-                y3p(currentcolors)
-            case _:
-                print("ERROR")
+        print(move)
+        makemove(move)
 
 def clockwise_randompyraminx(moves):
     reset()
@@ -282,14 +288,12 @@ def r1(pcolors):
     pcolors[16] = pcolors[63]
     pcolors[63] = pcolors[41]
     pcolors[41] = temp
-    updateGui()
 
 def r1p(pcolors):
     temp = pcolors[41]
     pcolors[41] = pcolors[63]
     pcolors[63] = pcolors[16]
     pcolors[16] = temp
-    updateGui()
 
 def r2(pcolors):
     temp = pcolors[36]
@@ -306,7 +310,6 @@ def r2(pcolors):
     pcolors[43] = pcolors[17]
     pcolors[17] = pcolors[56]
     pcolors[56] = temp
-    updateGui()
 
 def r2p(pcolors):
     temp = pcolors[61]
@@ -323,7 +326,6 @@ def r2p(pcolors):
     pcolors[56] = pcolors[17]
     pcolors[17] = pcolors[43]
     pcolors[43] = temp
-    updateGui()
 
 def r3(pcolors):
     temp = pcolors[32]
@@ -360,7 +362,31 @@ def r3(pcolors):
     pcolors[47] = pcolors[25]
     pcolors[25] = pcolors[48]
     pcolors[48] = temp
-    updateGui()
+
+    temp = pcolors[0]
+    pcolors[0] = pcolors[9]
+    pcolors[9] = pcolors[15]
+    pcolors[15] = temp
+
+    temp = pcolors[1]
+    pcolors[1] = pcolors[11]
+    pcolors[11] = pcolors[8]
+    pcolors[8] = temp
+
+    temp = pcolors[4]
+    pcolors[4] = pcolors[13]
+    pcolors[13] = pcolors[3]
+    pcolors[3] = temp
+
+    temp = pcolors[2]
+    pcolors[2] = pcolors[10]
+    pcolors[10] = pcolors[14]
+    pcolors[14] = temp
+
+    temp = pcolors[5]
+    pcolors[5] = pcolors[12]
+    pcolors[12] = pcolors[7]
+    pcolors[7] = temp
 
 def r3p(pcolors):
     temp = pcolors[57]
@@ -397,7 +423,31 @@ def r3p(pcolors):
     pcolors[48] = pcolors[25]
     pcolors[25] = pcolors[47]
     pcolors[47] = temp
-    updateGui()
+
+    temp = pcolors[15]
+    pcolors[15] = pcolors[9]
+    pcolors[9] = pcolors[0]
+    pcolors[0] = temp
+
+    temp = pcolors[8]
+    pcolors[8] = pcolors[11]
+    pcolors[11] = pcolors[1]
+    pcolors[1] = temp
+
+    temp = pcolors[3]
+    pcolors[3] = pcolors[13]
+    pcolors[13] = pcolors[4]
+    pcolors[4] = temp
+
+    temp = pcolors[14]
+    pcolors[14] = pcolors[10]
+    pcolors[10] = pcolors[2]
+    pcolors[2] = temp
+
+    temp = pcolors[7]
+    pcolors[7] = pcolors[12]
+    pcolors[12] = pcolors[5]
+    pcolors[5] = temp
 
 #blue base moves
 def b1(pcolors):
@@ -405,14 +455,12 @@ def b1(pcolors):
     pcolors[47] = pcolors[0]
     pcolors[0] = pcolors[57]
     pcolors[57] = temp
-    updateGui()
 
 def b1p(pcolors):
     temp = pcolors[57]
     pcolors[57] = pcolors[0]
     pcolors[0] = pcolors[47]
     pcolors[47] = temp
-    updateGui()
 
 def b2(pcolors):
     temp = pcolors[45]
@@ -429,7 +477,6 @@ def b2(pcolors):
     pcolors[40] = pcolors[3]
     pcolors[3] = pcolors[59]
     pcolors[59] = temp
-    updateGui()
 
 def b2p(pcolors):
     temp = pcolors[52]
@@ -446,7 +493,6 @@ def b2p(pcolors):
     pcolors[59] = pcolors[3]
     pcolors[3] = pcolors[40]
     pcolors[40] = temp
-    updateGui()
 
 def b3(pcolors):
     temp = pcolors[41]
@@ -483,7 +529,31 @@ def b3(pcolors):
     pcolors[32] = pcolors[15]
     pcolors[15] = pcolors[63]
     pcolors[63] = temp
-    updateGui()
+
+    temp = pcolors[31]
+    pcolors[31] = pcolors[25]
+    pcolors[25] = pcolors[16]
+    pcolors[16] = temp
+
+    temp = pcolors[24]
+    pcolors[24] = pcolors[27]
+    pcolors[27] = pcolors[17]
+    pcolors[17] = temp
+
+    temp = pcolors[19]
+    pcolors[19] = pcolors[29]
+    pcolors[29] = pcolors[20]
+    pcolors[20] = temp
+
+    temp = pcolors[30]
+    pcolors[30] = pcolors[26]
+    pcolors[26] = pcolors[18]
+    pcolors[18] = temp
+
+    temp = pcolors[23]
+    pcolors[23] = pcolors[28]
+    pcolors[28] = pcolors[21]
+    pcolors[21] = temp
 
 def b3p(pcolors):
     temp = pcolors[48]
@@ -520,7 +590,31 @@ def b3p(pcolors):
     pcolors[63] = pcolors[15]
     pcolors[15] = pcolors[32]
     pcolors[32] = temp
-    updateGui()
+
+    temp = pcolors[16]
+    pcolors[16] = pcolors[25]
+    pcolors[25] = pcolors[31]
+    pcolors[31] = temp
+
+    temp = pcolors[17]
+    pcolors[17] = pcolors[27]
+    pcolors[27] = pcolors[24]
+    pcolors[24] = temp
+
+    temp = pcolors[20]
+    pcolors[20] = pcolors[29]
+    pcolors[29] = pcolors[19]
+    pcolors[19] = temp
+
+    temp = pcolors[18]
+    pcolors[18] = pcolors[26]
+    pcolors[26] = pcolors[30]
+    pcolors[30] = temp
+
+    temp = pcolors[21]
+    pcolors[21] = pcolors[28]
+    pcolors[28] = pcolors[23]
+    pcolors[23] = temp
 
 #green base moves
 def g1(pcolors):
@@ -528,14 +622,12 @@ def g1(pcolors):
     pcolors[48] = pcolors[15]
     pcolors[15] = pcolors[31]
     pcolors[31] = temp
-    updateGui()
 
 def g1p(pcolors):
     temp = pcolors[31]
     pcolors[31] = pcolors[15]
     pcolors[15] = pcolors[48]
     pcolors[48] = temp
-    updateGui()
 
 def g2(pcolors):
     temp = pcolors[49]
@@ -552,7 +644,6 @@ def g2(pcolors):
     pcolors[51] = pcolors[8]
     pcolors[8] = pcolors[29]
     pcolors[29] = temp
-    updateGui()
 
 def g2p(pcolors):
     temp = pcolors[24]
@@ -569,7 +660,6 @@ def g2p(pcolors):
     pcolors[29] = pcolors[8]
     pcolors[8] = pcolors[51]
     pcolors[51] = temp
-    updateGui()
 
 def g3(pcolors):
     temp = pcolors[63]
@@ -606,7 +696,31 @@ def g3(pcolors):
     pcolors[57] = pcolors[9]
     pcolors[9] = pcolors[16]
     pcolors[16] = temp
-    updateGui()
+
+    temp = pcolors[47]
+    pcolors[47] = pcolors[41]
+    pcolors[41] = pcolors[32]
+    pcolors[32] = temp
+
+    temp = pcolors[40]
+    pcolors[40] = pcolors[43]
+    pcolors[43] = pcolors[33]
+    pcolors[33] = temp
+
+    temp = pcolors[35]
+    pcolors[35] = pcolors[45]
+    pcolors[45] = pcolors[36]
+    pcolors[36] = temp
+
+    temp = pcolors[46]
+    pcolors[46] = pcolors[42]
+    pcolors[42] = pcolors[34]
+    pcolors[34] = temp
+
+    temp = pcolors[39]
+    pcolors[39] = pcolors[44]
+    pcolors[44] = pcolors[37]
+    pcolors[37] = temp
 
 def g3p(pcolors):
     temp = pcolors[25]
@@ -643,7 +757,31 @@ def g3p(pcolors):
     pcolors[16] = pcolors[9]
     pcolors[9] = pcolors[57]
     pcolors[57] = temp
-    updateGui()
+
+    temp = pcolors[32]
+    pcolors[32] = pcolors[41]
+    pcolors[41] = pcolors[47]
+    pcolors[47] = temp
+
+    temp = pcolors[33]
+    pcolors[33] = pcolors[43]
+    pcolors[43] = pcolors[40]
+    pcolors[40] = temp
+
+    temp = pcolors[36]
+    pcolors[36] = pcolors[45]
+    pcolors[45] = pcolors[35]
+    pcolors[35] = temp
+
+    temp = pcolors[34]
+    pcolors[34] = pcolors[42]
+    pcolors[42] = pcolors[46]
+    pcolors[46] = temp
+
+    temp = pcolors[37]
+    pcolors[37] = pcolors[44]
+    pcolors[44] = pcolors[39]
+    pcolors[39] = temp
 
 #yellow base moves
 def y1(pcolors):
@@ -651,14 +789,12 @@ def y1(pcolors):
     pcolors[32] = pcolors[25]
     pcolors[25] = pcolors[9]
     pcolors[9] = temp
-    updateGui()
 
 def y1p(pcolors):
     temp = pcolors[9]
     pcolors[9] = pcolors[25]
     pcolors[25] = pcolors[32]
     pcolors[32] = temp
-    updateGui()
 
 def y2(pcolors):
     temp = pcolors[27]
@@ -675,7 +811,6 @@ def y2(pcolors):
     pcolors[20] = pcolors[11]
     pcolors[11] = pcolors[35]
     pcolors[35] = temp
-    updateGui()
 
 def y2p(pcolors):
     temp = pcolors[33]
@@ -692,7 +827,6 @@ def y2p(pcolors):
     pcolors[35] = pcolors[11]
     pcolors[11] = pcolors[20]
     pcolors[20] = temp
-    updateGui()
 
 def y3(pcolors):
     temp = pcolors[41]
@@ -729,7 +863,31 @@ def y3(pcolors):
     pcolors[47] = pcolors[16]
     pcolors[16] = pcolors[15]
     pcolors[15] = temp
-    updateGui()
+
+    temp = pcolors[63]
+    pcolors[63] = pcolors[57]
+    pcolors[57] = pcolors[48]
+    pcolors[48] = temp
+
+    temp = pcolors[56]
+    pcolors[56] = pcolors[59]
+    pcolors[59] = pcolors[49]
+    pcolors[49] = temp
+
+    temp = pcolors[51]
+    pcolors[51] = pcolors[61]
+    pcolors[61] = pcolors[52]
+    pcolors[52] = temp
+
+    temp = pcolors[62]
+    pcolors[62] = pcolors[58]
+    pcolors[58] = pcolors[50]
+    pcolors[50] = temp
+
+    temp = pcolors[55]
+    pcolors[55] = pcolors[60]
+    pcolors[60] = pcolors[53]
+    pcolors[53] = temp
 
 def y3p(pcolors):
     temp = pcolors[0]
@@ -766,13 +924,37 @@ def y3p(pcolors):
     pcolors[15] = pcolors[16]
     pcolors[16] = pcolors[47]
     pcolors[47] = temp
-    updateGui()
+
+    temp = pcolors[48]
+    pcolors[48] = pcolors[57]
+    pcolors[57] = pcolors[63]
+    pcolors[63] = temp
+
+    temp = pcolors[49]
+    pcolors[49] = pcolors[59]
+    pcolors[59] = pcolors[56]
+    pcolors[56] = temp
+
+    temp = pcolors[52]
+    pcolors[52] = pcolors[61]
+    pcolors[61] = pcolors[51]
+    pcolors[51] = temp
+
+    temp = pcolors[50]
+    pcolors[50] = pcolors[58]
+    pcolors[58] = pcolors[62]
+    pcolors[62] = temp
+
+    temp = pcolors[53]
+    pcolors[53] = pcolors[60]
+    pcolors[60] = pcolors[55]
+    pcolors[55] = temp
 
 
 
 #MAIN
 root = Tk()
-root.title("Pyraminx")
+root.title("4x4x4 Pyraminx")
 canvas = Canvas(root, width=1500, height=1000)
 colors = ["red3", "DeepSkyBlue2", "Dark Green", "goldenrod", "grey"]
 canvas.pack()
