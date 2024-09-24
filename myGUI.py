@@ -283,62 +283,62 @@ def entry_func():
 def addchildren(queue,current):
     tempc = copy.copy(current.arrangement)
     r1p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "r1p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     r2p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "r2p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     r3p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "r3p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     b1p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "b1p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     b2p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "b2p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     b3p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "b3p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     y1p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "y1p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     y2p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "y2p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     y3p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "y3p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     g1p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "g1p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     g2p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "g2p")
     queue.addn(tempnode)
 
     tempc = copy.copy(current.arrangement)
     g3p(tempc)
-    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc))
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "g3p")
     queue.addn(tempnode)
 
 def clockwise_entry_func():
@@ -347,7 +347,7 @@ def clockwise_entry_func():
 
 def clockwise_solve():
     global currentcolors
-    rootnode = classes.asnode(0, copy.deepcopy(currentcolors), 0, solved(startingcolors, currentcolors))
+    rootnode = classes.asnode(0, copy.deepcopy(currentcolors), 0, solved(startingcolors, currentcolors), "solved")
 
     pqueue = classes.minheap()
     pqueue.addn(rootnode)
@@ -363,9 +363,12 @@ def clockwise_solve():
 
     currentcolors = current.arrangement
     print("Arrangement Path:")
+    print("Solved")
     while(current.parent != 0):
         print(current.arrangement)
+        print(current.move)
         current = current.parent
+    print(current.arrangement)
     updateGui()
 
 

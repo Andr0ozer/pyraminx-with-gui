@@ -1,10 +1,11 @@
 class asnode:
-    def __init__(self, parent, arrenagement, distance, heuristic):
+    def __init__(self, parent, arrenagement, distance, heuristic, move):
         self.parent = parent
         self.arrangement = arrenagement
         self.d = distance
         self.h = heuristic
         self.f = distance+heuristic
+        self.move = move
 
 
 class minheap:
