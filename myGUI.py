@@ -1,14 +1,15 @@
 from tkinter import *
 import math
 import random
-
+import classes
+import copy
 
 #basic functions
 def reset():
     global startingcolors
     global currentcolors
     startingcolors = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
-    currentcolors = startingcolors
+    currentcolors = copy.deepcopy(startingcolors)
 
     clock_list = [
         {"button": Button(root, text="top clock", bg = colors[0]), "function": makemove, "arg1": 0},
@@ -142,7 +143,6 @@ def clockwise_randompyraminx(moves):
                 y3(currentcolors)
             case _:
                 print("ERROR")
-
     updateGui()
 
 def triangle(x,y):
@@ -171,23 +171,100 @@ def update_current_button(button_info):
     current_button_info = button_info
 
 def solved(a, b):
-    heuristic = 0.0
-    for i in range(63):
+    heuristic1 = 0.0
+    for i in range(64):
         if a[i] != b[i]:
-            heuristic = heuristic + 1
+            heuristic1 = heuristic1 + 1
 
-    heuristic = heuristic / 21
-    heuristic = math.ceil(heuristic)
+    heuristic1 = heuristic1 / 21
+    heuristic1 = math.ceil(heuristic1)
+    """
+    heuristic2 = 0.0
+    #side1
+    acolors=[]
+    bcolors=[]
+    for i in range(16):       
+        if (a[i] not in acolors):
+            acolors.append(a[i])
+        
+        if (b[i] not in bcolors):
+            bcolors.append(b[i])
+            
+    
+    if(len(acolors) < len(bcolors)):
+        heuristic2 = len(bcolors) - 1
+    else:
+        heuristic2 = len(acolors) - 1
 
-    return heuristic
+    #side 2
+    acolors=[]
+    bcolors=[]
+    for i in range(16):        
+        if (a[i+16] not in acolors):
+            acolors.append(a[i+16])
+        
+        if (b[i+16] not in bcolors):
+            bcolors.append(b[i+16])
+
+    if(len(acolors) < len(bcolors)):
+        if(len(bcolors) > heuristic2):
+            heuristic2 = len(bcolors) - 1
+    else:
+        if(len(acolors) > heuristic2):
+            heuristic2 = len(acolors) - 1
+
+    #side 3
+    acolors=[]
+    bcolors=[]
+    for i in range(16):
+        if (a[i+32] not in acolors):
+            acolors.append(a[i+32])
+        
+        if (b[i+32] not in bcolors):
+            bcolors.append(b[i+32])
+
+    if(len(acolors) < len(bcolors)):
+        if(len(bcolors) > heuristic2):
+            heuristic2 = len(bcolors) - 1
+    else:
+        if(len(acolors) > heuristic2):
+            heuristic2 = len(acolors) - 1
+
+    #side 4
+    acolors=[]
+    bcolors=[]
+    for i in range(16):
+        if (a[i+48] not in acolors):
+            acolors.append(a[i+48])
+        
+        if (b[i+48] not in bcolors):
+            bcolors.append(b[i+48])
+    
+    if(len(acolors) < len(bcolors)):
+        if(len(bcolors) > heuristic2):
+            heuristic2 = len(bcolors) - 1
+    else:
+        if(len(acolors) > heuristic2):
+            heuristic2 = len(acolors) - 1
+
+    heuristic = 1.0
+    heuristic = heuristic * heuristic2 * heuristic1
+    heuristic = heuristic/2
+
+    if (heuristic == 0.5):
+        heuristic = 1
+
+    heuristic = math.floor(heuristic)
+"""
+    return heuristic1
 
 def updateGui():
     canvas.delete("all")
-    if solved([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], currentcolors) == 0:
+    if solved(startingcolors, currentcolors) == 0:
         canvas.create_text(300, 50, text="SOLVED!!!", fill="black", font=('Helvetica 15 bold'))
     else:
         canvas.create_text(220, 50, text="Heuristic:", fill="black", font=('Helvetica 15 bold'))
-        canvas.create_text(300, 50, text= solved([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3], 
+        canvas.create_text(300, 50, text= solved(startingcolors, 
         currentcolors), fill="black", font=('Helvetica 15 bold'))
 
     #1 Red
@@ -280,9 +357,97 @@ def entry_func():
     entry_text = entry.get()
     randompyraminx(int(entry_text))
 
+def addchildren(queue,current):
+    tempc = copy.copy(current.arrangement)
+    r1p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "r1p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    r2p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "r2p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    r3p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "r3p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    b1p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "b1p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    b2p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "b2p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    b3p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "b3p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    y1p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "y1p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    y2p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "y2p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    y3p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "y3p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    g1p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "g1p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    g2p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "g2p")
+    queue.addn(tempnode)
+
+    tempc = copy.copy(current.arrangement)
+    g3p(tempc)
+    tempnode = classes.asnode(current, tempc, current.d + 1, solved(startingcolors, tempc), "g3p")
+    queue.addn(tempnode)
+
 def clockwise_entry_func():
     entry_text = entry.get()
     clockwise_randompyraminx(int(entry_text))
+
+def clockwise_solve():
+    global currentcolors
+    rootnode = classes.asnode(0, copy.deepcopy(currentcolors), 0, solved(startingcolors, currentcolors), "solved")
+
+    pqueue = classes.minheap()
+    pqueue.addn(rootnode)
+
+    if(len(pqueue.queue) == 0):
+        print("ERROR")
+
+    current = pqueue.queue.pop(0)
+    while(current.h > 0):
+        addchildren(pqueue,current)
+        current = pqueue.queue.pop(0)
+
+
+    currentcolors = current.arrangement
+    print("Arrangement Path:")
+    print("Solved")
+    while(current.parent != 0):
+        print(current.arrangement)
+        print(current.move)
+        current = current.parent
+    print(current.arrangement)
+    updateGui()
+
 
 #red base moves
 def r1(pcolors):
@@ -963,10 +1128,13 @@ canvas.pack()
 
 reset()
 
+
 Rbutton = Button(root, text="Randomize", command=entry_func, bg = colors[4])
 Rbutton.place(x = 1100, y = 770)
 Cbutton = Button(root, text="Clockwise Randomize", command=clockwise_entry_func, bg = colors[4])
 Cbutton.place(x = 1100, y = 800)
+Cbutton = Button(root, text="Counter Clockwise Solve", command=clockwise_solve, bg = colors[4])
+Cbutton.place(x = 1100, y = 830)
 entry = Entry(root)
 entry.place(x = 950, y = 770)
 root.mainloop()
