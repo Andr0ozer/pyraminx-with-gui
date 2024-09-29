@@ -3,6 +3,7 @@ import math
 import random
 import classes
 import copy
+import time
 
 #basic functions
 def reset():
@@ -178,7 +179,7 @@ def solved(a, b):
 
     heuristic1 = heuristic1 / 21
     heuristic1 = math.ceil(heuristic1)
-    """
+    
     heuristic2 = 0.0
     #side1
     acolors=[]
@@ -255,8 +256,20 @@ def solved(a, b):
         heuristic = 1
 
     heuristic = math.floor(heuristic)
-"""
-    return heuristic1
+
+    return heuristic
+
+def fk_solve_entry_func():
+    entry_text = entry.get()
+    start_time = time.time()
+    for i in range(5):
+        clockwise_randompyraminx(int(entry_text))
+        clockwise_solve()
+        print(str(i + 1) + " solved")
+    print("done")
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Elapsed time: {elapsed_time:.5f} seconds")
 
 def updateGui():
     canvas.delete("all")
@@ -1135,6 +1148,8 @@ Cbutton = Button(root, text="Clockwise Randomize", command=clockwise_entry_func,
 Cbutton.place(x = 1100, y = 800)
 Cbutton = Button(root, text="Counter Clockwise Solve", command=clockwise_solve, bg = colors[4])
 Cbutton.place(x = 1100, y = 830)
+Cbutton = Button(root, text="5-K Solve", command=fk_solve_entry_func, bg = colors[4])
+Cbutton.place(x = 1100, y = 860)
 entry = Entry(root)
 entry.place(x = 950, y = 770)
 root.mainloop()
